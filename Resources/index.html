@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo Window.js</title>
+</head>
+<body>
+  <h1>Exemplo de Janela Movível com Janela Filha Arrastável</h1>
+  <script type="module">
+    import { createWindow } from './js/window.js';
+
+    // Cria a janela pai
+    const janelaPai = createWindow({
+      content: '', // conteúdo será adicionado depois
+      width: 800,
+      height: 400,
+      backgroundColor: '#111',
+      borderColor: '#fff'
+    });
+
+    // Cria a janela filha DENTRO da área de conteúdo da janela pai
+    const janelaFilha = createWindow({
+      content: 'Sou a janela filha!',
+      width: 400,
+      height: 250,
+      backgroundColor: '#222',
+      borderColor: '#fff',
+      container: janelaPai.querySelector('.window-content')
+    });
+
+    // Cria a janela neta DENTRO da área de conteúdo da janela filha
+    const janelaNeta = createWindow({
+      content: 'Sou a janela neta!',
+      width: 200,
+      height: 100,
+      backgroundColor: '#333',
+      borderColor: '#fff',
+      container: janelaFilha.querySelector('.window-content')
+    });
+
+    // Posiciona a janela filha no centro da janela pai
+    janelaFilha.style.left = '250px';
+    janelaFilha.style.top = '100px';
+  </script>
+</body>
+</html>
